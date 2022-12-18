@@ -1,1 +1,104 @@
-Hello World
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style.css">
+<link href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" rel="stylesheet" >
+<title>Sample index</title>
+
+<link rel="stylesheet" href="meanmenu.css" />
+<script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="jquery.meanmenu.js"></script>
+<script>
+$(document).ready(function() {
+$('nav').meanmenu();
+});
+</script>
+
+</head>
+
+<body>
+
+<div class="base" id="top"><!-- ページレイアウト -->
+
+
+<div class="header"><!-- ヘッダー -->
+
+<h1><a href="index.html">つくたの</a></h1>
+
+</div><!-- ヘッダー：終わり -->
+
+<div class="menu"><!-- メニューボックス -->
+<nav>
+<ul class="list1">
+    <li><a href="index.html">Index</a></li>
+    <li><a href="info.html">Info</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="index.html#link">Link</a></li>
+</ul>
+</nav>
+</div><!-- メニューボックス：終わり -->
+
+<div class="box"><!-- ボックス格納 -->
+
+<div class="work"><!-- メインボックス -->
+
+    <h1>サイト説明</h1>
+    ここは、とま(tktomaru)のプロフィールサイトです。作成したサイトを紹介します。
+
+    <hr class="hr3">
+    <hr class="hr2">
+
+    <h3>WebPage（作成サイト）</h3>
+    <h4>じゃんけん</h4>
+    <h5><a href="https://jyankenpon.azurewebsites.net/">https://jyankenpon.azurewebsites.net/</a></h5>
+    <p class="p1">じゃんけんができるサイト。azureで作成した。</p>
+
+    <h4>グローバルIP取得</h4>
+    <h5><a href="https://res-gip.azurewebsites.net/">https://res-gip.azurewebsites.net/</a></h5>
+    <p class="p1">グローバルIPをレスポンスするサイト。azureで作成した。</p>
+    
+    <h4>ToDOリスト管理</h4>
+    <h5><a href="https://yarukoto.azurewebsites.net/">https://yarukoto.azurewebsites.net/</a></h5>
+    <p class="p1">ToDOリストを管理するサイト。一般非公開。azureで作成した。</p>
+            
+    <h4>ToDOリスト管理</h4>
+    <h5><a href="https://yarukoto.tukutano.com/">https://yarukoto.tukutano.com/</a></h5>
+    <p class="p1">ToDOリストを管理するサイト。一般非公開。</p>
+            
+    <h4>つくたの</h4>
+    <h5><a href="https://tukutano.com/">https://tukutano.com/</a></h5>
+    <p class="p1">ブログサイト。Wordpressで作成した。</p>
+            
+    <hr class="hr3">
+    <hr class="hr2">
+
+    <h3 id="link">Links（リンク集）</h3>
+        <dd class="dd1"><a href="https://github.com/tktomaru"><img src="banner.png" alt="リンクバナー" width="88" height="31" class="img1">　github</dd></a>
+        <dd class="dd1"><a href="https://twitter.com/tk_tomaru"><img src="banner.png" alt="リンクバナー" width="88" height="31" class="img1">　Twitterサイト</dd></a>
+        <dd class="dd1"><a href="https://tukutano.com/"><img src="banner.png" alt="リンクバナー" width="88" height="31" class="img1">　つくたのブログ</dd></a>
+    </dl>
+
+
+</div><!-- メインボックス：終わり -->
+
+</div><!-- ボックス格納：終わり -->
+
+
+<div class="footer"><!-- フッター -->
+
+<address>
+Copyright&copy; 2022  All rights reserved.<!--著作権表示-->&nbsp;&#9752;
+<cite>designed by <a href="https://fc.ashrose.net/" target="_top">flower&amp;clover</a></cite>
+</address>
+
+</div><!-- フッター：終わり -->
+
+
+</div><!-- ページレイアウト：終わり -->
+
+</body>
+</html>
