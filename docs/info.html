@@ -85,37 +85,6 @@ $('nav').meanmenu();
 
 <a href="#top" class="pagetop"><img src="top2.png" alt="Page Top"></a><!-- ページトップに戻る -->
 
-    <div class="memo">
-Sub ListEmbeddedImages()
-    Dim il As InlineShape
-    Dim sh As Shape
-    Dim fso As Object
-    Dim txt As Object
-    Dim outPath As String
-
-    outPath = Environ("USERPROFILE") & "\Desktop\ImageList.txt"  ' 出力先
-    Set fso = CreateObject("Scripting.FileSystemObject")
-    Set txt = fso.CreateTextFile(outPath, True, False)
-
-    ' インライン画像
-    For Each il In ActiveDocument.InlineShapes
-        If il.Type = wdInlineShapePicture Or il.Type = wdInlineShapeLinkedPicture Then
-            txt.WriteLine "Inline: " & il.AlternativeText
-        End If
-    Next
-
-    ' 図形として挿入された画像
-    For Each sh In ActiveDocument.Shapes
-        If sh.Type = msoPicture Or sh.Type = msoLinkedPicture Then
-            txt.WriteLine "Shape:  " & sh.Name
-        End If
-    Next
-
-    txt.Close
-    MsgBox "完了しました！デスクトップの ImageList.txt をご確認ください。", vbInformation
-End Sub
-    </div>
-
 
 </div><!-- メインボックス：終わり -->
 
