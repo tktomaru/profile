@@ -15,6 +15,20 @@ permalink: /gallery.html
 <hr class="hr3">
 <hr class="hr2">
 
+<div class="gc-row" id="gcSlideRow">
+  <label class="gc-label" for="gcSlideInterval">スライド</label>
+
+  <button id="gcSlideToggle" class="gc-btn" type="button" aria-pressed="false">
+    開始
+  </button>
+
+  <input id="gcSlideInterval" class="gc-number" type="number" min="1" step="1" value="3" inputmode="numeric">
+  <span class="gc-unit">秒</span>
+
+  <button id="gcSlidePrev" class="gc-btn" type="button" aria-label="前へ">◀</button>
+  <button id="gcSlideNext" class="gc-btn" type="button" aria-label="次へ">▶</button>
+</div>
+
 <div class="gallery-controls" role="group" aria-label="ギャラリーレイアウト設定">
   <div class="gc-row">
     <label class="gc-label" for="gcLayout">表示</label>
@@ -85,8 +99,16 @@ permalink: /gallery.html
   var modalOpen = document.getElementById('imgModalOpen');
   var modalClose = document.getElementById('imgModalClose');
 
+
+  var slideToggle = document.getElementById('gcSlideToggle');
+  var slideInterval = document.getElementById('gcSlideInterval');
+  var slidePrev = document.getElementById('gcSlidePrev');
+  var slideNext = document.getElementById('gcSlideNext');
+
   // 万一要素が取れない場合の安全策（テンプレ編集途中でも落ちない）
-  if (!grid || !layoutSel || !colsRange || !colsValue || !colsRow || !modal || !modalImg || !modalAlt || !modalDesc || !modalOpen || !modalClose) {
+  if (!grid || !layoutSel || !colsRange || !colsValue || !colsRow
+      || !modal || !modalImg || !modalAlt || !modalDesc || !modalOpen || !modalClose
+      || !slideToggle || !slideInterval || !slidePrev || !slideNext) {
     return;
   }
 
@@ -155,6 +177,7 @@ permalink: /gallery.html
     }
     document.documentElement.classList.remove('modal-open');
     modalImg.src = '';
+    slideshow.stop();
   }
 
   // 画像クリックでモーダル表示
@@ -232,5 +255,198 @@ permalink: /gallery.html
     // フォールバック：全部 eager
     imgs.forEach(function (img) { img.loading = 'eager'; ensurePaint(img); });
   }
+
+    // ===== Slideshow Module（n秒周期で全写真を順に表示）=====
+  var links = Array.prototype.slice.call(grid.querySelectorAll('a.gallery-link'));
+  var currentIndex = -1;
+
+  function clampInt(n, min, max, fallback) {
+    var v = parseInt(String(n), 10);
+    if (!Number.isFinite(v)) v = fallback;
+    v = Math.max(min, Math.min(max, v));
+    return v;
+  }
+
+  function getSlide(i) {
+    var a = links[i];
+    if (!a) return null;
+    var src = a.getAttribute('data-full') || a.getAttribute('href');
+    var alt = a.getAttribute('data-alt') || '';
+    var desc = a.getAttribute('data-desc') || '';
+    return { src: src, alt: alt, desc: desc };
+  }
+
+  function openByIndex(i) {
+    if (!links.length) return;
+    var idx = ((i % links.length) + links.length) % links.length;
+    var s = getSlide(idx);
+    if (!s) return;
+
+    currentIndex = Math.max(0, links.indexOf(a));
+    openModal(src, alt, desc);
+
+    // 次を軽く先読み（空白ちらつき軽減）
+    var next = getSlide((idx + 1) % links.length);
+    if (next && next.src) {
+      var pre = new Image();
+      pre.decoding = 'async';
+      pre.loading = 'eager';
+      pre.src = next.src;
+      if (pre.decode) pre.decode().catch(function(){});
+    }
+  }
+
+  // openModal を呼ぶ箇所（既存のクリック）で currentIndex も更新する
+  // ※あなたの「grid.addEventListener('click', ...)」内の openModal(...) 呼び出しを以下に置き換え
+  // openModal(src, alt, desc);
+  // ↓
+  // currentIndex = Math.max(0, links.indexOf(a));
+  // openModal(src, alt, desc);
+
+  var slideshow = (function () {
+    var running = false;
+    var timer = 0;
+    var intervalMs = 3000;
+    var lastTickAt = 0;
+
+    function loadSettings() {
+      try {
+        var saved = localStorage.getItem('gallery.slideshow.intervalSec');
+        if (saved) intervalMs = clampInt(saved, 1, 3600, 3) * 1000;
+      } catch (e) {}
+      slideInterval.value = String(Math.round(intervalMs / 1000));
+    }
+
+    function saveSettings() {
+      try {
+        localStorage.setItem('gallery.slideshow.intervalSec', String(Math.round(intervalMs / 1000)));
+      } catch (e) {}
+    }
+
+    function render() {
+      slideToggle.textContent = running ? '停止' : '開始';
+      slideToggle.setAttribute('aria-pressed', running ? 'true' : 'false');
+    }
+
+    function stop() {
+      running = false;
+      if (timer) clearTimeout(timer);
+      timer = 0;
+      render();
+    }
+
+    function stepNext() {
+      if (!links.length) return;
+      if (currentIndex < 0) currentIndex = 0;
+      openByIndex((currentIndex + 1) % links.length);
+    }
+
+    function stepPrev() {
+      if (!links.length) return;
+      if (currentIndex < 0) currentIndex = 0;
+      openByIndex((currentIndex - 1 + links.length) % links.length);
+    }
+
+    function tick() {
+      if (!running) return;
+
+      // タブ非表示中は進めない（復帰時に暴発しにくくする）
+      if (document.hidden) {
+        timer = setTimeout(tick, 500);
+        return;
+      }
+
+      var now = Date.now();
+      // 初回・または間隔変更時に極端に早く進まないようガード
+      if (lastTickAt && now - lastTickAt < Math.max(250, intervalMs * 0.6)) {
+        timer = setTimeout(tick, 250);
+        return;
+      }
+      lastTickAt = now;
+
+      stepNext();
+      timer = setTimeout(tick, intervalMs);
+    }
+
+    function start() {
+      if (running) return;
+      if (!links.length) return;
+
+      running = true;
+      render();
+
+      // モーダルが閉じている状態なら、現在 or 先頭から開いて開始
+      if (!modal.hasAttribute('open')) {
+        openByIndex(currentIndex >= 0 ? currentIndex : 0);
+      }
+
+      lastTickAt = 0;
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(tick, intervalMs);
+    }
+
+    function setIntervalSec(sec) {
+      intervalMs = clampInt(sec, 1, 3600, 3) * 1000;
+      slideInterval.value = String(Math.round(intervalMs / 1000));
+      saveSettings();
+
+      if (running) {
+        // 即反映（タイマー再起動）
+        if (timer) clearTimeout(timer);
+        lastTickAt = 0;
+        timer = setTimeout(tick, intervalMs);
+      }
+    }
+
+    // public
+    loadSettings();
+    render();
+
+    return {
+      start: start,
+      stop: stop,
+      toggle: function () { running ? stop() : start(); },
+      next: stepNext,
+      prev: stepPrev,
+      setIntervalSec: setIntervalSec,
+      isRunning: function () { return running; },
+    };
+  })();
+
+  // controls wiring
+  slideToggle.addEventListener('click', function () {
+    slideshow.toggle();
+  });
+
+  slideInterval.addEventListener('change', function () {
+    slideshow.setIntervalSec(slideInterval.value);
+  });
+
+  slidePrev.addEventListener('click', function () {
+    slideshow.prev();
+  });
+
+  slideNext.addEventListener('click', function () {
+    slideshow.next();
+  });
+
+  // キーボード操作（任意）：←/→で前後、Spaceで開始/停止
+  document.addEventListener('keydown', function (e) {
+    // 入力中は邪魔しない
+    var t = e.target;
+    var isTyping = t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable);
+    if (isTyping) return;
+
+    if (!modal.hasAttribute('open')) return;
+
+    if (e.key === 'ArrowRight') { e.preventDefault(); slideshow.next(); }
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); slideshow.prev(); }
+    if (e.key === ' ')          { e.preventDefault(); slideshow.toggle(); }
+  });
+
+  // モーダルを閉じたら自動再生も止める（暴走防止）
+  // ※あなたの closeModal() の最後にこれを1行追加してもOK：
+  // slideshow.stop();
+
 })();
 </script>
