@@ -1,6 +1,10 @@
 ---
 layout: default
 title: Gallery
+description: とまが撮影したお気に入り写真ギャラリーです。
+og_image: /images/ogp_gallery.png
+og_image_width: 1200
+og_image_height: 600
 permalink: /gallery.html
 ---
 

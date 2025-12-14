@@ -1,10 +1,7 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>{{ page.title }} | つくたの</title>
-  <link rel="stylesheet" href="/assets/css/style.css" />
+  {% include head.html %}
 </head>
 <body>
   {% include header.html %}
@@ -12,5 +9,11 @@
     {{ content }}
   </main>
   {% include footer.html %}
+
+  <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="/jquery.meanmenu.js"></script>
+  <script>
+    $(document).ready(function() { $('nav').meanmenu(); });
+  </script>
 </body>
 </html>

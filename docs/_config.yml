@@ -1,0 +1,18 @@
+# Site settings
+title: つくたの
+description: tukutano のプロフィールや各種リンクをまとめたページです。
+lang: ja
+timezone: Asia/Tokyo
+
+# GitHub Pages URL settings
+url: "https://profile.tukutano.jp"
+baseurl: ""
+
+# OGP default image
+og_image: "/images/ogp.png"
+og_image_width: 1200
+og_image_height: 600
+
+# Social
+twitter_username: "tk_tomaru"   # 先頭の @ は不要
+github_username: "tktomaru"
