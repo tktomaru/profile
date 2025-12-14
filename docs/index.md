@@ -41,7 +41,8 @@ permalink: /index.html
 <hr class="hr3">
 <hr class="hr2">
 
-## Links（リンク集）
+## Links（リンク集） {#link}
+
 <!-- 既存のリンク集があるなら、ここはそのままHTMLで貼ってもOK -->
 <div class="link-list">
   <a class="link-item" href="https://github.com/tktomaru" target="_blank" rel="noopener noreferrer">
