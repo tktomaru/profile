@@ -1,107 +1,42 @@
-<!DOCTYPE html>
-<html lang="ja">
+---
+layout: default
+title: About
+permalink: /about.html
+---
 
-<head>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta charset="UTF-8">
+# このサイトは？
 
-<link rel="apple-touch-icon" sizes="57x57" href="icon/apple-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="icon/apple-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="icon/apple-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="icon/apple-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="icon/apple-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="icon/apple-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="icon/apple-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="icon/apple-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="icon/apple-icon-180x180.png">
-<link rel="icon" type="image/png" sizes="192x192"  href="icon/android-icon-192x192.png">
-<link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="icon/favicon-96x96.png">
-<link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
-<link rel="manifest" href="icon/manifest.json">
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="icon/ms-icon-144x144.png">
-<meta name="theme-color" content="#ffffff">
-
-<link rel="stylesheet" href="style.css">
-<link href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" rel="stylesheet" >
-<title>つくたの</title>
-
-<link rel="stylesheet" href="meanmenu.css" />
-<script src="https://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="jquery.meanmenu.js"></script>
-<script>
-$(document).ready(function() {
-$('nav').meanmenu();
-});
-</script>
-
-</head>
-
-<body>
-
-<div class="base" id="top"><!-- ページレイアウト -->
-
-
-<div class="header"><!-- ヘッダー -->
-
-<h1><a href="index.html">つくたの</a></h1>
-
-</div><!-- ヘッダー：終わり -->
-
-
-<div class="menu"><!-- メニューボックス -->
-<nav>
-<ul class="list1">
-    <li><a href="index.html">Index</a></li>
-    <li><a href="info.html">Info</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="gallery.html">Gallery</a></li>
-    <li><a href="index.html#link">Link</a></li>
-</ul>
-</nav>
-</div><!-- メニューボックス：終わり -->
-
-<div class="box"><!-- ボックス格納 -->
-
-<div class="work"><!-- メインボックス -->
-
-<h1>このサイトは？</h1>
-とまによる個人サイトです。
+とまによる個人サイトです。  
 作成したサイトなどを紹介します。
 
 <hr class="hr3">
 
-<h3 id="about">About Link</h3>
-<h4>当サイトへのリンクについて</h4>
-<h6>リンクはご自由にどうぞ。</h6>
-<dl class="dl1"> 
-<dt class="dt1"><span class="dt1span">About Link</span></dt>
-<dd class="dd1"><img src="./images/banner.png" alt="リンクバナー" width="88" height="31" class="img1"></dd>
-<dd class="dd1">・つくたの</dd>
-<dd class="dd1">・管理人名 とま（tktomaru）</dd>
-<dd class="dd1">・URL https://profile.tukutano.jp/</dd>
-</dl>
+## About Link
 
-<a href="#top" class="pagetop"><img src="top2.png" alt="Page Top"></a><!-- ページトップに戻る -->
+### 当サイトへのリンクについて
+{{ site.data.about.link_note }}
 
-</div><!-- メインボックス：終わり -->
+<div class="about-card">
+  <div class="about-card-head">About Link</div>
 
+  <div class="about-card-body">
+    <div class="about-banner">
+      <img
+        src="{{ site.data.about.banner_img }}"
+        alt="{{ site.data.about.banner_alt }}"
+        width="{{ site.data.about.banner_width }}"
+        height="{{ site.data.about.banner_height }}"
+      >
+    </div>
 
-</div><!-- ボックス格納：終わり -->
+    <ul class="about-list">
+      <li>・{{ site.data.about.site_title }}</li>
+      <li>・管理人名 {{ site.data.about.owner_name }}</li>
+      <li>・URL <a href="{{ site.data.about.site_url }}" target="_blank" rel="noopener noreferrer">{{ site.data.about.site_url }}</a></li>
+    </ul>
+  </div>
+</div>
 
-
-<div class="footer"><!-- フッター -->
-
-    <address>
-        Copyright&copy; 2025 tukutano.jp All rights reserved.<!--著作権表示-->&nbsp;&#9752;
-        <cite>designed by <a href="https://fc.ashrose.net/" target="_top">flower&amp;clover</a></cite>
-        </address>
-
-</div><!-- フッター：終わり -->
-
-
-</div><!-- ページレイアウト：終わり -->
-
-</body>
-</html>
+<a href="#top" class="pagetop">
+  <img src="top2.png" alt="Page Top">
+</a>
