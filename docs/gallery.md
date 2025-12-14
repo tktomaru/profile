@@ -24,9 +24,6 @@ permalink: /gallery.html
 
   <input id="gcSlideInterval" class="gc-number" type="number" min="1" step="1" value="3" inputmode="numeric">
   <span class="gc-unit">秒</span>
-
-  <button id="gcSlidePrev" class="gc-btn" type="button" aria-label="前へ">◀</button>
-  <button id="gcSlideNext" class="gc-btn" type="button" aria-label="次へ">▶</button>
 </div>
 
 <div class="gallery-controls" role="group" aria-label="ギャラリーレイアウト設定">
@@ -102,13 +99,11 @@ permalink: /gallery.html
 
   var slideToggle = document.getElementById('gcSlideToggle');
   var slideInterval = document.getElementById('gcSlideInterval');
-  var slidePrev = document.getElementById('gcSlidePrev');
-  var slideNext = document.getElementById('gcSlideNext');
 
   // 万一要素が取れない場合の安全策（テンプレ編集途中でも落ちない）
   if (!grid || !layoutSel || !colsRange || !colsValue || !colsRow
       || !modal || !modalImg || !modalAlt || !modalDesc || !modalOpen || !modalClose
-      || !slideToggle || !slideInterval || !slidePrev || !slideNext) {
+      || !slideToggle || !slideInterval) {
     return;
   }
 
