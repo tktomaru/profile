@@ -73,12 +73,23 @@ permalink: /gallery.html
   var colsValue = document.getElementById('gcColsValue');
   var colsRow = document.getElementById('gcColsRow');
 
+  // ===== Image Modal Preview =====
+  var modal = document.getElementById('imgModal');
+  var modalImg = document.getElementById('imgModalImg');
+  var modalAlt = document.getElementById('imgModalAlt');
+  var modalDesc = document.getElementById('imgModalDesc');
+  var modalOpen = document.getElementById('imgModalOpen');
+  var modalClose = document.getElementById('imgModalClose');
+
+  // 万一要素が取れない場合の安全策（テンプレ編集途中でも落ちない）
+  if (!grid || !layoutSel || !colsRange || !colsValue || !colsRow || !modal || !modalImg || !modalAlt || !modalDesc || !modalOpen || !modalClose) {
+    return;
+  }
+
   function apply(layout, cols) {
-    // layout
     grid.classList.toggle('is-list', layout === 'list');
     grid.classList.toggle('is-grid', layout !== 'list');
 
-    // cols（listの時は操作不可にする）
     var isList = layout === 'list';
     colsRow.style.opacity = isList ? '0.5' : '1';
     colsRange.disabled = isList;
@@ -97,7 +108,7 @@ permalink: /gallery.html
     } catch (e) {}
   }
 
-  // 初期値（保存があれば優先）
+  // 初期値
   var savedLayout = 'grid';
   var savedCols = '3';
   try {
@@ -107,7 +118,6 @@ permalink: /gallery.html
 
   layoutSel.value = (savedLayout === 'list') ? 'list' : 'grid';
   colsRange.value = savedCols;
-
   apply(layoutSel.value, colsRange.value);
 
   layoutSel.addEventListener('change', function () {
@@ -117,15 +127,6 @@ permalink: /gallery.html
   colsRange.addEventListener('input', function () {
     apply(layoutSel.value, colsRange.value);
   });
-})();
-
-  // ===== Image Modal Preview =====
-  var modal = document.getElementById('imgModal');
-  var modalImg = document.getElementById('imgModalImg');
-  var modalAlt = document.getElementById('imgModalAlt');
-  var modalDesc = document.getElementById('imgModalDesc');
-  var modalOpen = document.getElementById('imgModalOpen');
-  var modalClose = document.getElementById('imgModalClose');
 
   function openModal(src, alt, desc) {
     modalImg.src = src;
@@ -134,11 +135,9 @@ permalink: /gallery.html
     modalDesc.textContent = desc || '';
     modalOpen.href = src;
 
-    // <dialog> が使える環境
     if (typeof modal.showModal === 'function') {
       modal.showModal();
     } else {
-      // フォールバック
       modal.setAttribute('open', '');
     }
     document.documentElement.classList.add('modal-open');
@@ -151,12 +150,10 @@ permalink: /gallery.html
       modal.removeAttribute('open');
     }
     document.documentElement.classList.remove('modal-open');
-
-    // 画像を解放（メモリ節約）
     modalImg.src = '';
   }
 
-  // 画像クリックをモーダルに差し替え
+  // 画像クリックでモーダル表示
   grid.addEventListener('click', function (e) {
     var a = e.target && e.target.closest ? e.target.closest('a.gallery-link') : null;
     if (!a) return;
@@ -174,16 +171,13 @@ permalink: /gallery.html
     closeModal();
   });
 
-  // 背景クリックで閉じる（dialogの外側をクリック）
   modal.addEventListener('click', function (e) {
-    // dialog自体（背景）をクリックした場合のみ閉じる
     if (e.target === modal) closeModal();
   });
 
-  // Escで閉じる（dialogのcancelイベント）
   modal.addEventListener('cancel', function (e) {
     e.preventDefault();
     closeModal();
   });
-
+})();
 </script>
