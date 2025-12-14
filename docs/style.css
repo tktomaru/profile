@@ -448,3 +448,65 @@ h1{
 }
 
 }
+
+.timeline {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+  display: grid;
+  gap: 12px;
+}
+
+.timeline-item {
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  background: #fff;
+  padding: 12px 14px;
+}
+
+.timeline-date {
+  font-size: 12px;
+  opacity: 0.8;
+  margin-bottom: 6px;
+}
+
+.timeline-title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.timeline-sub {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  line-height: 1.7;
+}
+
+.about-card {
+  margin-top: 12px;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.about-card-head {
+  padding: 10px 14px;
+  font-weight: 700;
+  border-bottom: 1px solid #eee;
+}
+
+.about-card-body {
+  padding: 12px 14px;
+}
+
+.about-banner {
+  margin-bottom: 10px;
+}
+
+.about-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  line-height: 1.8;
+}
+

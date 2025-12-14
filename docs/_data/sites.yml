@@ -1,0 +1,66 @@
+# docs/_data/sites.yml
+
+- name: BMIを一覧で！
+  url: https://bmi.tukutano.jp/
+  desc: BMIを一覧で計算できるサイト。Nuxtを利用した。
+  tags: [Nuxt]
+
+- name: Voicer
+  url: https://voicer.tukutano.jp/data/
+  desc: 音声ファイルからテキストを起こすことが出来るサイト。nodejsを利用した。
+  tags: [Node.js]
+
+- name: ToDoリスト管理
+  url: https://yarukoto.tukutano.jp/
+  desc: ToDoリストを管理するサイト。一般非公開。
+  tags: []
+
+- name: replyサーバ
+  url: https://reply.tukutano.jp/
+  desc: アクセスした人の情報を返却するサイト。Expressを使用した
+  tags: [Express, Node.js]
+
+- name: XpathCSS変換
+  url: https://xpathcss.tukutano.jp/convert?xpath=//*[@id=%22ct-sidebar-scroll-container%22]/div/div/div[4]/div[2]/div/ul/li[12]/div/div[2]/div[1]/div/span/span/span
+  desc: XpathからCSSセレクタに変換するサイト。Expressを使用した
+  tags: [Express, Node.js]
+
+- name: 会話のきっかけジェネレーター
+  url: https://icebreak.tukutano.jp/
+  desc: 会話のきっかけの質問を表示するサイト。Nuxtを使用した
+  tags: [Nuxt]
+
+- name: JavaScriptレンダリングありのHTML取得サービス
+  url: https://evato.tukutano.jp/
+  desc: URLを渡すとサイトにアクセスして、HTMLを返すサイト。一般非公開。
+  tags: []
+
+- name: すけちょう
+  url: https://suketyou.tukutano.jp/
+  desc: スケジュールを調整できるサイト。Nuxtを使用した
+  tags: [Nuxt]
+
+- name: わりした
+  url: https://warishita.tukutano.jp/
+  desc: 立替を計算できるサイト。Reactを使用した
+  tags: [React]
+
+- name: プロント
+  url: https://promto.tukutano.jp/
+  desc: プロンプトを共有できるサイト。AngularとSpringフレームワークを使用した
+  tags: [Angular, Spring]
+
+- name: ウェート
+  url: https://weto.tukutano.jp/
+  desc: WebToolサイト。Reactを使用したSPA。Github Pagesで公開している
+  tags: [React, SPA, GitHub Pages]
+
+- name: OGP
+  url: https://ogp.tukutano.jp/
+  desc: OGP確認サイト
+  tags: []
+
+- name: つくたの
+  url: https://tukutano.jp/
+  desc: ブログサイト。Wordpressで作成した。
+  tags: [WordPress]

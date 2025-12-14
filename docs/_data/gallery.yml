@@ -1,0 +1,191 @@
+# docs/_data/gallery.yml
+
+- src: photo/冬桜公園.JPG
+  alt: 桜山公園
+  desc: 2022年11月の初旬に行った桜山公園の写真です。
+
+- src: photo/四万川ダム.JPG
+  alt: 四万川ダム
+  desc: 2022年11月の初旬に行った四万十川ダムの写真です。
+
+- src: photo/八ッ場ダム.JPG
+  alt: 八ッ場ダム
+  desc: 2022年11月の初旬に行った八ッ場ダムの写真です。
+
+- src: photo/涸沢の朝.JPG
+  alt: 涸沢
+  desc: 奥穂高に行く途中で撮った涸沢の朝です。
+
+- src: photo/奥穂高岳.JPG
+  alt: 奥穂高岳
+  desc: 奥穂高岳の山頂からの写真です。
+
+- src: photo/涸沢のモルゲンロート.jpg
+  alt: 涸沢のモルゲンロート
+  desc: 涸沢のモルゲンロートの写真です。
+
+- src: photo/IMG_8766.JPG
+  alt: 涸沢
+  desc: 涸沢の写真です。
+
+- src: photo/IMG_8838.JPG
+  alt: 涸沢
+  desc: 涸沢の写真です。
+
+- src: photo/高千穂峡.JPG
+  alt: 高千穂峡
+  desc: 高千穂峡の写真です。
+
+- src: photo/草千里.JPG
+  alt: 草千里
+  desc: 草千里の写真です。
+
+- src: photo/熊本城.JPG
+  alt: 熊本城
+  desc: 熊本城の写真です。
+
+- src: photo/雄川の滝.JPG
+  alt: 雄川の滝
+  desc: 雄川の滝の写真です。
+
+- src: photo/協会.JPG
+  alt: 協会
+  desc: 協会の写真です。
+
+- src: photo/叫び.JPG
+  alt: 叫び
+  desc: 叫びの写真です。
+
+- src: photo/こだま.JPG
+  alt: こだま
+  desc: こだまの写真です。
+
+- src: photo/ウィルソン株.JPG
+  alt: ウィルソン株
+  desc: ウィルソン株の写真です。
+
+- src: photo/パンケーキ.JPG
+  alt: パンケーキ
+  desc: パンケーキの写真です。
+
+- src: photo/ハート岩.JPG
+  alt: ハート岩
+  desc: ハート岩の写真です。
+
+- src: photo/kame-to-issyo.jpg
+  alt: カメと一緒
+  desc: カメと一緒の写真です。
+
+- src: photo/kaitei.jpg
+  alt: 海底歩き
+  desc: 海底歩きの写真です。
+
+- src: photo/富士山からの眺め.JPG
+  alt: 富士山からの眺め
+  desc: 富士山からの眺めの写真です。
+
+- src: photo/厳島神社.JPG
+  alt: 厳島神社
+  desc: 厳島神社の写真です。
+
+- src: photo/IMG_1896.JPG
+  alt: 至仏山
+  desc: 至仏山の写真です。
+
+- src: photo/IMG_1895.JPG
+  alt: 至仏山
+  desc: 至仏山の写真です。
+
+- src: photo/IMG_20130930_103028570.jpg
+  alt: 浅間隠山
+  desc: 浅間隠山の写真です。
+
+- src: photo/IMG_20130930_102909156.jpg
+  alt: 浅間隠山
+  desc: 浅間隠山の写真です。
+
+- src: photo/IMG_20130923_131938247.jpg
+  alt: 妙義山
+  desc: 妙義山の写真です。
+
+- src: photo/IMG_20130923_11252077.jpg
+  alt: 妙義山
+  desc: 妙義山の写真です。
+
+- src: photo/IMG_1860.JPG
+  alt: 庚申山
+  desc: 庚申山の写真です。
+
+- src: photo/IMG_1864.JPG
+  alt: 庚申山
+  desc: 庚申山の写真です。
+
+- src: photo/IMG_8419.JPG
+  alt: 鍋割山
+  desc: 鍋割山の写真です。
+
+- src: photo/IMG_8418.JPG
+  alt: 鍋割山
+  desc: 鍋割山の写真です。
+
+- src: photo/QBNG7712.JPG
+  alt: 大野山
+  desc: 大野山の写真です。
+
+- src: photo/QGYW3880.JPG
+  alt: 大野山
+  desc: 大野山の写真です。
+
+- src: photo/兼六園.JPG
+  alt: 兼六園
+  desc: 兼六園の写真です。
+
+# ---- hakone（※ "\" → "/" に修正） ----
+- src: photo/hakone/箱根美術館の庭園.jpg
+  alt: 箱根美術館の庭園
+  desc: 箱根美術館の庭園の写真です。
+
+- src: photo/hakone/ガラスの森のトナカイ.jpg
+  alt: ガラスの森のトナカイ
+  desc: ガラスの森のトナカイの写真です。
+
+- src: photo/hakone/ガラスの森の夜.jpg
+  alt: ガラスの森の夜
+  desc: ガラスの森の夜の写真です。
+
+- src: photo/hakone/ガラスの塔.jpg
+  alt: ガラスの塔
+  desc: ガラスの塔の写真です。
+
+- src: photo/hakone/強羅公園.jpg
+  alt: 強羅公園
+  desc: 強羅公園の写真です。
+
+- src: photo/hakone/箱根美術館の建物.jpg
+  alt: 箱根美術館の建物
+  desc: 箱根美術館の建物の写真です。
+
+# ---- huji（※ "\" → "/" に修正） ----
+- src: photo/huji/P1290487.JPG
+  alt: 忍野八海
+  desc: 忍野八海の写真です。
+
+- src: photo/huji/P1290535.JPG
+  alt: 新倉山浅間公園
+  desc: 新倉山浅間公園の写真です。
+
+- src: photo/huji/P1290563.JPG
+  alt: 富士芝桜祭り
+  desc: 富士芝桜祭りの写真です。
+
+- src: photo/huji/P1290572.JPG
+  alt: 富士芝桜祭り
+  desc: 富士芝桜祭りの写真です。
+
+- src: photo/huji/P1290593.JPG
+  alt: 音羽の滝
+  desc: 音羽の滝の写真です。
+
+- src: photo/huji/P1290600.JPG
+  alt: 白糸の滝
+  desc: 白糸の滝の写真です。
