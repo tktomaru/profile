@@ -32,5 +32,5 @@ permalink: /info.html
 </ul>
 
 <a href="#top" class="pagetop">
-  <img src="top2.png" alt="Page Top">
+  <img src="/top2.png" alt="Page Top">
 </a>

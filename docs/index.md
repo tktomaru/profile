@@ -58,3 +58,7 @@ permalink: /index.html
     <img src="./images/banner_hatena.png" alt="リンクバナー" width="88" height="31"> はてなブログ
   </a>
 </div>
+
+<a href="#top" class="pagetop">
+  <img src="/top2.png" alt="Page Top">
+</a>
