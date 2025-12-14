@@ -718,3 +718,10 @@ html.modal-open body {
   background: #fafafa;
   text-decoration: none;
 }
+
+.gallery-img {
+  background: #f3f3f3;
+}
+.gallery-img.is-error {
+  background: #ffecec;
+}

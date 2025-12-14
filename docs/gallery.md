@@ -179,5 +179,54 @@ permalink: /gallery.html
     e.preventDefault();
     closeModal();
   });
+  
+  
+  // ===== Thumb paint stabilizer（グリッドで空白になりがちな画像の描画を安定化）=====
+  function markLoaded(img) {
+    img.classList.add('is-loaded');
+  }
+  function markError(img) {
+    img.classList.add('is-error');
+  }
+  function ensurePaint(img) {
+    if (!img) return;
+
+    // すでに読み込み済みなら decode を促す（描画が遅れて空白になる対策）
+    if (img.complete && img.naturalWidth > 0) {
+      if (img.decode) img.decode().catch(function(){});
+      markLoaded(img);
+      return;
+    }
+
+    img.addEventListener('load', function () {
+      if (img.decode) img.decode().catch(function(){});
+      markLoaded(img);
+    }, { once: true });
+
+    img.addEventListener('error', function () {
+      markError(img);
+    }, { once: true });
+  }
+
+  var imgs = Array.prototype.slice.call(grid.querySelectorAll('img.gallery-img'));
+  imgs.forEach(ensurePaint);
+
+  // 画面に近づいたら eager + decode（lazyの誤判定/後回しを抑制）
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (ent) {
+        if (!ent.isIntersecting) return;
+        var img = ent.target;
+        img.loading = 'eager';     // ここで “表示するなら今” を明示
+        ensurePaint(img);
+        io.unobserve(img);
+      });
+    }, { root: null, rootMargin: '300px 0px', threshold: 0.01 });
+
+    imgs.forEach(function (img) { io.observe(img); });
+  } else {
+    // フォールバック：全部 eager
+    imgs.forEach(function (img) { img.loading = 'eager'; ensurePaint(img); });
+  }
 })();
 </script>
