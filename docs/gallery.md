@@ -177,7 +177,7 @@ permalink: /gallery.html
     }
     document.documentElement.classList.remove('modal-open');
     modalImg.src = '';
-    slideshow.stop();
+    if (slideshow && slideshow.stop) slideshow.stop();
   }
 
   // 画像クリックでモーダル表示
@@ -276,25 +276,27 @@ permalink: /gallery.html
     return { src: src, alt: alt, desc: desc };
   }
 
-  function openByIndex(i) {
-    if (!links.length) return;
-    var idx = ((i % links.length) + links.length) % links.length;
-    var s = getSlide(idx);
-    if (!s) return;
+function openByIndex(i) {
+  if (!links.length) return;
 
-    currentIndex = Math.max(0, links.indexOf(a));
-    openModal(src, alt, desc);
+  var idx = ((i % links.length) + links.length) % links.length;
+  var s = getSlide(idx);
+  if (!s) return;
 
-    // 次を軽く先読み（空白ちらつき軽減）
-    var next = getSlide((idx + 1) % links.length);
-    if (next && next.src) {
-      var pre = new Image();
-      pre.decoding = 'async';
-      pre.loading = 'eager';
-      pre.src = next.src;
-      if (pre.decode) pre.decode().catch(function(){});
-    }
+  // ★ここが正しい
+  currentIndex = idx;
+  openModal(s.src, s.alt, s.desc);
+
+  // 次を軽く先読み（空白ちらつき軽減）
+  var next = getSlide((idx + 1) % links.length);
+  if (next && next.src) {
+    var pre = new Image();
+    pre.decoding = 'async';
+    pre.loading = 'eager';
+    pre.src = next.src;
+    if (pre.decode) pre.decode().catch(function(){});
   }
+}
 
   // openModal を呼ぶ箇所（既存のクリック）で currentIndex も更新する
   // ※あなたの「grid.addEventListener('click', ...)」内の openModal(...) 呼び出しを以下に置き換え
