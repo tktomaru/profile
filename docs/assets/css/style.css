@@ -632,3 +632,89 @@ h3.card-title::before {
     height: 180px;
   }
 }
+
+
+/* ===== Modal ===== */
+html.modal-open,
+html.modal-open body {
+  overflow: hidden;
+}
+
+.img-modal {
+  border: none;
+  padding: 0;
+  background: transparent;
+  max-width: min(1100px, 96vw);
+  width: 96vw;
+}
+
+.img-modal::backdrop {
+  background: rgba(0,0,0,0.6);
+}
+
+.img-modal[open] {
+  display: grid;
+  place-items: center;
+}
+
+.img-modal__inner {
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid #e6e6e6;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  overflow: hidden;
+  width: 100%;
+}
+
+.img-modal__close {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  font-size: 28px;
+  line-height: 1;
+  padding: 10px 14px;
+  cursor: pointer;
+  float: right;
+}
+
+.img-modal__figure {
+  margin: 0;
+  padding: 14px;
+  clear: both;
+}
+
+.img-modal__img {
+  width: 100%;
+  height: min(70vh, 720px);
+  object-fit: contain;
+  background: #f7f7f7;
+  border-radius: 12px;
+  display: block;
+}
+
+.img-modal__cap {
+  margin-top: 10px;
+}
+
+.img-modal__title {
+  font-weight: 700;
+}
+
+.img-modal__desc {
+  margin-top: 6px;
+  opacity: 0.9;
+  line-height: 1.7;
+}
+
+.img-modal__actions {
+  padding: 0 14px 14px;
+}
+
+.img-modal__link {
+  display: inline-block;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fafafa;
+  text-decoration: none;
+}

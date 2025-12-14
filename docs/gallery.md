@@ -30,7 +30,10 @@ permalink: /gallery.html
 <ul class="gallery-grid" id="galleryGrid">
 {% for p in site.data.gallery %}
   <li class="gallery-card">
-    <a class="gallery-link" href="{{ p.src }}" target="_blank" rel="noopener noreferrer">
+    <a class="gallery-link" href="{{ p.src }}"
+       data-full="{{ p.src }}"
+       data-alt="{{ p.alt | escape }}"
+       data-desc="{{ p.desc | default: '' | strip_newlines | escape }}">
       <img class="gallery-img" src="{{ p.src }}" alt="{{ p.alt }}" loading="lazy" decoding="async">
     </a>
     {% if p.desc %}
@@ -39,6 +42,24 @@ permalink: /gallery.html
   </li>
 {% endfor %}
 </ul>
+
+<dialog class="img-modal" id="imgModal" aria-label="画像プレビュー">
+  <div class="img-modal__inner">
+    <button class="img-modal__close" id="imgModalClose" aria-label="閉じる">×</button>
+
+    <figure class="img-modal__figure">
+      <img id="imgModalImg" class="img-modal__img" alt="">
+      <figcaption class="img-modal__cap">
+        <div id="imgModalAlt" class="img-modal__title"></div>
+        <div id="imgModalDesc" class="img-modal__desc"></div>
+      </figcaption>
+    </figure>
+
+    <div class="img-modal__actions">
+      <a id="imgModalOpen" class="img-modal__link" href="#" target="_blank" rel="noopener noreferrer">元画像を開く</a>
+    </div>
+  </div>
+</dialog>
 
 <a href="#top" class="pagetop">
   <img src="/top2.png" alt="Page Top">
@@ -97,4 +118,72 @@ permalink: /gallery.html
     apply(layoutSel.value, colsRange.value);
   });
 })();
+
+  // ===== Image Modal Preview =====
+  var modal = document.getElementById('imgModal');
+  var modalImg = document.getElementById('imgModalImg');
+  var modalAlt = document.getElementById('imgModalAlt');
+  var modalDesc = document.getElementById('imgModalDesc');
+  var modalOpen = document.getElementById('imgModalOpen');
+  var modalClose = document.getElementById('imgModalClose');
+
+  function openModal(src, alt, desc) {
+    modalImg.src = src;
+    modalImg.alt = alt || '';
+    modalAlt.textContent = alt || '';
+    modalDesc.textContent = desc || '';
+    modalOpen.href = src;
+
+    // <dialog> が使える環境
+    if (typeof modal.showModal === 'function') {
+      modal.showModal();
+    } else {
+      // フォールバック
+      modal.setAttribute('open', '');
+    }
+    document.documentElement.classList.add('modal-open');
+  }
+
+  function closeModal() {
+    if (typeof modal.close === 'function') {
+      modal.close();
+    } else {
+      modal.removeAttribute('open');
+    }
+    document.documentElement.classList.remove('modal-open');
+
+    // 画像を解放（メモリ節約）
+    modalImg.src = '';
+  }
+
+  // 画像クリックをモーダルに差し替え
+  grid.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a.gallery-link') : null;
+    if (!a) return;
+
+    e.preventDefault();
+
+    var src = a.getAttribute('data-full') || a.getAttribute('href');
+    var alt = a.getAttribute('data-alt') || '';
+    var desc = a.getAttribute('data-desc') || '';
+
+    openModal(src, alt, desc);
+  });
+
+  modalClose.addEventListener('click', function () {
+    closeModal();
+  });
+
+  // 背景クリックで閉じる（dialogの外側をクリック）
+  modal.addEventListener('click', function (e) {
+    // dialog自体（背景）をクリックした場合のみ閉じる
+    if (e.target === modal) closeModal();
+  });
+
+  // Escで閉じる（dialogのcancelイベント）
+  modal.addEventListener('cancel', function (e) {
+    e.preventDefault();
+    closeModal();
+  });
+
 </script>
