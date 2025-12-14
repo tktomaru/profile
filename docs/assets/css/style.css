@@ -517,3 +517,118 @@ h1{
 h3.card-title::before {
   content: none !important;
 }
+
+/* ===== Gallery Controls ===== */
+.gallery-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  align-items: center;
+  margin: 10px 0 14px;
+  padding: 10px 12px;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.gc-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.gc-label {
+  font-size: 13px;
+  opacity: 0.85;
+  min-width: 3.5em;
+}
+
+.gc-select {
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.gc-range {
+  width: 180px;
+}
+
+.gc-badge {
+  display: inline-block;
+  min-width: 2.2em;
+  text-align: center;
+  font-size: 12px;
+  padding: 3px 8px;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  background: #fafafa;
+}
+
+/* ===== Gallery Layout ===== */
+.gallery-grid {
+  --gallery-cols: 3;
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+  display: grid;
+  gap: 14px;
+}
+
+/* グリッド */
+.gallery-grid.is-grid {
+  grid-template-columns: repeat(var(--gallery-cols), minmax(220px, 1fr));
+}
+
+/* リスト（1列 + 横並び） */
+.gallery-grid.is-list {
+  grid-template-columns: 1fr;
+}
+
+.gallery-grid.is-list .gallery-card {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.gallery-grid.is-list .gallery-img {
+  height: 140px;
+}
+
+/* 既存カードに馴染ませる（未定義なら有効になる） */
+.gallery-card {
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.gallery-link {
+  display: block;
+}
+
+.gallery-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+.gallery-desc {
+  margin: 10px 2px 2px;
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 580px) {
+  .gc-range { width: 140px; }
+  .gallery-grid.is-list .gallery-card {
+    grid-template-columns: 1fr;
+  }
+  .gallery-grid.is-list .gallery-img {
+    height: 180px;
+  }
+}

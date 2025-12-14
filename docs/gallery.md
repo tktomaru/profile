@@ -11,7 +11,23 @@ permalink: /gallery.html
 <hr class="hr3">
 <hr class="hr2">
 
-<ul class="gallery-grid">
+<div class="gallery-controls" role="group" aria-label="ギャラリーレイアウト設定">
+  <div class="gc-row">
+    <label class="gc-label" for="gcLayout">表示</label>
+    <select id="gcLayout" class="gc-select">
+      <option value="grid">グリッド</option>
+      <option value="list">リスト</option>
+    </select>
+  </div>
+
+  <div class="gc-row" id="gcColsRow">
+    <label class="gc-label" for="gcCols">列数</label>
+    <input id="gcCols" class="gc-range" type="range" min="1" max="6" step="1" value="3">
+    <span id="gcColsValue" class="gc-badge">3</span>
+  </div>
+</div>
+
+<ul class="gallery-grid" id="galleryGrid">
 {% for p in site.data.gallery %}
   <li class="gallery-card">
     <a class="gallery-link" href="{{ p.src }}" target="_blank" rel="noopener noreferrer">
@@ -25,5 +41,59 @@ permalink: /gallery.html
 </ul>
 
 <a href="#top" class="pagetop">
-  <img src="top2.png" alt="Page Top">
 </a>
+
+<script>
+(function () {
+  var grid = document.getElementById('galleryGrid');
+  var layoutSel = document.getElementById('gcLayout');
+  var colsRange = document.getElementById('gcCols');
+  var colsValue = document.getElementById('gcColsValue');
+  var colsRow = document.getElementById('gcColsRow');
+
+  function apply(layout, cols) {
+    // layout
+    grid.classList.toggle('is-list', layout === 'list');
+    grid.classList.toggle('is-grid', layout !== 'list');
+
+    // cols（listの時は操作不可にする）
+    var isList = layout === 'list';
+    colsRow.style.opacity = isList ? '0.5' : '1';
+    colsRange.disabled = isList;
+
+    var n = parseInt(cols, 10);
+    if (!Number.isFinite(n)) n = 3;
+    n = Math.max(1, Math.min(6, n));
+
+    grid.style.setProperty('--gallery-cols', String(n));
+    colsRange.value = String(n);
+    colsValue.textContent = String(n);
+
+    try {
+      localStorage.setItem('gallery.layout', layout);
+      localStorage.setItem('gallery.cols', String(n));
+    } catch (e) {}
+  }
+
+  // 初期値（保存があれば優先）
+  var savedLayout = 'grid';
+  var savedCols = '3';
+  try {
+    savedLayout = localStorage.getItem('gallery.layout') || 'grid';
+    savedCols = localStorage.getItem('gallery.cols') || '3';
+  } catch (e) {}
+
+  layoutSel.value = (savedLayout === 'list') ? 'list' : 'grid';
+  colsRange.value = savedCols;
+
+  apply(layoutSel.value, colsRange.value);
+
+  layoutSel.addEventListener('change', function () {
+    apply(layoutSel.value, colsRange.value);
+  });
+
+  colsRange.addEventListener('input', function () {
+    apply(layoutSel.value, colsRange.value);
+  });
+})();
+</script>
