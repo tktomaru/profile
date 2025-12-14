@@ -97,12 +97,15 @@ h3{
     color:#202020;
 }
 
-h3:before{
-    font-family:'Font Awesome 5 Free';
-    content:'\f101';
-    font-weight:bold;
-    margin:0px 10px 0px 0px;
-    color:#6699cc;
+h3::before { content: none; }
+
+/* 必要な見出しだけ矢印を付ける */
+h3.section-title::before{
+  font-family:'Font Awesome 5 Free';
+  content:'\f101';
+  font-weight:900;
+  margin-right:10px;
+  color:#6699cc;
 }
 
 h4{
@@ -510,3 +513,7 @@ h1{
   line-height: 1.8;
 }
 
+/* カード内のh3は、h3::before(矢印)を付けない */
+h3.card-title::before {
+  content: none !important;
+}
