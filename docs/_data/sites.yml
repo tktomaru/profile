@@ -58,7 +58,12 @@
 - name: OGP
   url: https://ogp.tukutano.jp/
   desc: OGP確認サイト
-  tags: []
+  tags: [Node.js]
+
+- name: ピクセルダイアリー
+  url: https://pixel-diary.tukutano.jp/
+  desc: ドット絵日記共有サイト
+  tags: [Go]
 
 - name: つくたの
   url: https://tukutano.jp/
