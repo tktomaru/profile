@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Webサイト紹介
+title: とまの自己紹介サイト
 permalink: /index.html
 ---
 
